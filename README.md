@@ -1,0 +1,2 @@
+# IE-start
+ class test
