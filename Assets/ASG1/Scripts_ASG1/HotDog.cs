@@ -7,23 +7,19 @@ using UnityEngine;
  * Date: 16/5/24
  * Description: hotdog
  */
-public class HotDog : MonoBehaviour
+public class HotDog : Collectible
 {
     //points to add
     int hotDogScore = 1;
-
-    void Collected()
+    protected override void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("A HotDog! Nice!");
-        Destroy(gameObject); // destroy gameobject when collected
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
+        base.OnCollisionEnter(collision);
         if (collision.gameObject.tag == "Player") // check if the object that collided with it have player tag
         {
             collision.gameObject.GetComponent<Player>().IncreaseScore(hotDogScore); // call the public fuction to add
-            Collected();
+            IncreaseMovementSpeed(20.0f); // Increase movement speed by 2
+            IncreaseJumpHeight(10.0f); // Increase jump height by 1
+            
         }
 
     }
